@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Search Box -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                class="input-box"
+                placeholder="Enter your location"
+            >
+
+            <button id="serachBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <!-- Weather Information -->
+        <div class="weather-body">
+
+            <img src="img/cloud.png" alt="Weather Icon" class="weather-img">
+
+            <div class="weather-box">
+                <p class="temperature">
+                    0<sup>°C</sup>
+                </p>
+
+                <p class="description">
+                    Light Rain
+                </p>
+            </div>
+
+            <div class="weather-details">
+
+                <!-- Humidity -->
+                <div class="humidity">
+                    <i class="fa-solid fa-droplet"></i>
+
+                    <div class="text">
+                        <span id="humidity">45%</span>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+
+                <!-- Wind -->
+                <div class="wind">
+                    <i class="fa-solid fa-wind"></i>
+
+                    <div class="text">
+                        <span id="wind-speed">12 Km/h</span>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/2357e725d8.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
