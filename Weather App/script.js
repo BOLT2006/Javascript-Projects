@@ -1,21 +1,61 @@
-const inputBox = document.querySelector(".input-box");
-const serachBtn = document.getElementById("serachBtn");
-const weather_img = document.querySelector(".weather-img");
-const temperature = document.querySelector(".temperature");
-const description = document.querySelector(".description");
-const humidity = document.getElementById("humidity");
-const wind_speed = document.getElementById("wind-speed");
+const cityInput = document.querySelector(".city-input");
+const searchBtn = document.querySelector(".search-btn");
 
-async function checkWeather(city) {
-  const api_key = "ac5282a885d6c13797fdd9b5089cb063";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=metric`;
-  const weather_data = await fetch(url).then(response => response.json());
+const weatherInfoSection = document.querySelector(".weather-info");
 
-  
-  console.log(weather_data);
+const notFoundSection = document.querySelector(".not-found");
+const searchCitySection = document.querySelector(".search-city");
+const countryTxt = document.querySelector(".country-txt");
+const currentDateTxt = document.querySelector(".current-date-txt");
+const tempTxt = document.querySelector(".temp-txt");
+const conditionTxt = document.querySelector(".condition-txt");
 
+const apiKey = "ac5282a885d6c13797fdd9b5089cb063";
 
-}
-serachBtn.addEventListener("click", () => {
-  checkWeather(inputBox.value);
+searchBtn.addEventListener("click", () => {
+  if (cityInput.value.trim() != "") {
+    updateWeatherInfo(cityInput.value);
+    cityInput.value = "";
+    cityInput.blur();
+  }
 });
+
+cityInput.addEventListener("keydown", (event) => {
+  if (event.key == "Enter" && cityInput.value.trim() != "") {
+    updateWeatherInfo(cityInput.value);
+    cityInput.value = "";
+    cityInput.blur();
+  }
+});
+
+async function getFetchData(endPoint, city) {
+  const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}&units=metric`;
+  const response = await fetch(apiUrl);
+
+  return response.json();
+}
+
+async function updateWeatherInfo(city) {
+  const weatherData = await getFetchData("weather", city);
+  if (weatherData.cod != 200) {
+    showDisplaySection(notFoundSection);
+    return;
+  }
+  console.log(weatherData);
+  const {
+    name: country,
+    main: { humidity, temp },
+    weather: [{ id, main }],
+    wind: { speed },
+  } = weatherData;
+  showDisplaySection(weatherInfoSection);
+}
+function showDisplaySection(section) {
+  [weatherInfoSection, notFoundSection, searchCitySection].forEach(
+    (section) => {
+      section.style.display = "none";
+    },
+  );
+
+  section.style.display = "flex";
+}
