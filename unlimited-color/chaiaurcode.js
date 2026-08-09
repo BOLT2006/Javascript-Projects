@@ -22,4 +22,5 @@ start.addEventListener("click", () => {
 
 stop.addEventListener('click' , () =>{
     clearInterval(intervalId);
+    intevalId = null   // this stop to overwriting on intervalID
 })
