@@ -20,7 +20,7 @@ start.addEventListener("click", () => {
   intervalId = setInterval(body , 1000)
 });
 
-stop.addEventListener('click' , () =>{
+stop.addEventListener('Onclick' , () =>{
     clearInterval(intervalId);
     intevalId = null   // this stop to overwriting on intervalID
 })
